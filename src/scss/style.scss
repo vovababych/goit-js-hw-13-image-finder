@@ -1,5 +1,9 @@
+@import './spin';
+
 html {
   box-sizing: border-box;
+  overflow-anchor: none;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -9,6 +13,8 @@ html {
 }
 
 body {
+  height: 100%;
+  overflow: auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -60,20 +66,37 @@ input[name='query'] {
 }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1vw;
+  grid-auto-flow: minmax(250px, auto);
+
   &__item {
     margin: 2% 2% 20px 2%;
+    &-img {
+      cursor: pointer;
+      transition: all 0.2s linear;
+
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px;
+      }
+    }
   }
 }
 
-.btn-wrapper {
-  color: red;
+.spinner.is-hidden {
+  display: none;
 }
 
 .load-more {
   display: block;
   margin: 0 auto;
-  padding: 5px 20px;
+  padding: 10px 60px;
   cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+}
+.load-more.is-hidden {
+  display: none;
 }
